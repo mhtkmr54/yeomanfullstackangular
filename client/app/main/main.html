@@ -6,9 +6,22 @@
 
 
   <form class="comment-form" ng-submit="addComment()" name="commentForm">
-    <textarea class="form-control" ng-model="newComment" rows="3" placeholder="Enter a new comment" required></textarea>
+    <textarea class="form-control" ng-model="newComment" rows="3" placeholder="Type 1 and Click to start" required></textarea>
+     </br>
     <input class="btn btn-primary" type="submit"  value="Start the graph">
   </form>
+ </br>
+ </hr>
+ </br>
+
+    <form class="comment-form" ng-submit="faddComment()" name="fcommentForm">
+    <textarea class="form-control" ng-model="fnewComment" rows="1" placeholder="Force a new Data" required></textarea>
+   </br>
+    <input class="btn btn-danger" type="submit"  value="Interrupt Simulation">
+    <input class="btn btn-danger" ng-click="stopsimulation()" value="STOP">
+  </form>
+  </br>
+  </br>
 
   <ul class="comment-list">
     <li ng-repeat="comment in comments">

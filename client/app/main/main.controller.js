@@ -4,6 +4,9 @@ angular.module('angularTubeApp')
   .controller('MainCtrl', function($scope, $http, socket) {
 
     $scope.newComment = '';
+    $scope.fnewComment = '';
+
+
 
     // Grab the initial set of available comments
     $http.get('/api/comments').success(function(comments) {
@@ -32,27 +35,45 @@ angular.module('angularTubeApp')
 
     function myTimer() {
       console.log('inmyTimer');
-      textmax = String(i) + ',' + String(i);
+      console.log(i);
+      textmax = parseFloat(i / 10) + ',' + parseFloat(i / 10);
       console.log('Textmax');
       console.log(textmax);
       $scope.newComment = textmax;
       $http.post('/api/comments', {
         content: $scope.newComment
       });
-      i++;
+      i = i + 1;
+      console.log(i);
 
 
     }
+    var intervalPost;
     // Use our rest api to post a new comment
     $scope.addComment = function() {
 
-      var intervalPost = setInterval(function() {
+      intervalPost = setInterval(function() {
         myTimer();
-      }, 2000);
+      }, 1000);
       if (i > 180) {
         clearInterval(intervalPost);
         intervalPost = 0;
       }
 
     };
+
+    $scope.faddComment = function() {
+      console.log($scope.fnewComment);
+      $http.post('/api/comments', {
+        content: $scope.fnewComment
+      });
+
+    };
+
+    $scope.stopsimulation = function() {
+      clearInterval(intervalPost);
+      intervalPost = 0;
+    };
+
+
   });

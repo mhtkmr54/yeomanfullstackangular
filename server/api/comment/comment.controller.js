@@ -42,14 +42,14 @@ exports.create = function(req, res) {
   var text = "";
   for (i = 0; i < 2; i++) {
     text += array[i] + ",";
-    console.log(math.sin(math.unit(array[i], 'deg')));
+    console.log(math.sin(parseFloat(array[i])));
     if (i === 1) {
       console.log("CCCCCCCCCCCCCCCCCCCCCOOOOOOOOOOOOOOOOSSSSSSSSSSSSSSSS");
-      console.log(math.sin(math.unit(array[i], 'deg')));
-      text += math.cos(math.unit(parseInt(array[i]), 'deg')).toFixed(4);
+      console.log(math.sin(parseFloat(array[i])));
+      text += math.cos(parseFloat(array[i])).toFixed(4);
       break;
     }
-    text += math.sin(math.unit(array[i], 'deg')).toFixed(4) + ",";
+    text += math.sin(parseFloat(array[i])).toFixed(4) + ",";
   }
   req.body.content = text;
   console.log(text);
