@@ -5,17 +5,23 @@ var Comment = require('./comment.model');
 
 // Get list of comments
 exports.index = function(req, res) {
-  Comment.find(function (err, comments) {
-    if(err) { return handleError(res, err); }
+  Comment.find(function(err, comments) {
+    if (err) {
+      return handleError(res, err);
+    }
     return res.json(200, comments);
   });
 };
 
 // Get a single comment
 exports.show = function(req, res) {
-  Comment.findById(req.params.id, function (err, comment) {
-    if(err) { return handleError(res, err); }
-    if(!comment) { return res.send(404); }
+  Comment.findById(req.params.id, function(err, comment) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!comment) {
+      return res.send(404);
+    }
     return res.json(comment);
   });
 };
@@ -24,23 +30,40 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   // don't include the date, if a user specified it
   delete req.body.date;
- 
-  var comment = new Comment(_.merge({ author: req.user._id }, req.body));
+  console.log("reqqqqqqqqqqqqqq USERRRRRERRRRRRR");
+  console.log(req.user);
+  console.log("reqBBBBBBBBBBBBBBBBBBBBBBBBBBOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDYYYYYYYYYYY")
+  console.log(req.body)
+  console.log("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD")
+  //console.log(req.user._id)
+  var comment = new Comment(_.merge({
+    author: "558194cfe4380850581ba76b"
+  }, req.body));
   comment.save(function(err, comment) {
-    if(err) { return handleError(res, err); }
+    if (err) {
+      return handleError(res, err);
+    }
     return res.json(201, comment);
   });
 };
 
 // Updates an existing comment in the DB.
 exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  Comment.findById(req.params.id, function (err, comment) {
-    if (err) { return handleError(res, err); }
-    if(!comment) { return res.send(404); }
+  if (req.body._id) {
+    delete req.body._id;
+  }
+  Comment.findById(req.params.id, function(err, comment) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!comment) {
+      return res.send(404);
+    }
     var updated = _.merge(comment, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
+    updated.save(function(err) {
+      if (err) {
+        return handleError(res, err);
+      }
       return res.json(200, comment);
     });
   });
@@ -48,11 +71,17 @@ exports.update = function(req, res) {
 
 // Deletes a comment from the DB.
 exports.destroy = function(req, res) {
-  Comment.findById(req.params.id, function (err, comment) {
-    if(err) { return handleError(res, err); }
-    if(!comment) { return res.send(404); }
+  Comment.findById(req.params.id, function(err, comment) {
+    if (err) {
+      return handleError(res, err);
+    }
+    if (!comment) {
+      return res.send(404);
+    }
     comment.remove(function(err) {
-      if(err) { return handleError(res, err); }
+      if (err) {
+        return handleError(res, err);
+      }
       return res.send(204);
     });
   });
