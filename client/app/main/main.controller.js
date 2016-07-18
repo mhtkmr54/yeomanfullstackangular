@@ -27,20 +27,32 @@ angular.module('angularTubeApp')
       socket.unsyncUpdates('comment');
     });
 
+    var i = 0;
+    var textmax = '';
+
+    function myTimer() {
+      console.log('inmyTimer');
+      textmax = String(i) + ',' + String(i);
+      console.log('Textmax');
+      console.log(textmax);
+      $scope.newComment = textmax;
+      $http.post('/api/comments', {
+        content: $scope.newComment
+      });
+      i++;
+
+
+    }
     // Use our rest api to post a new comment
     $scope.addComment = function() {
 
-      //int X;
-      var i = 0;
-      var textmax = '';
-      for (i = 0; i < 181; i++) {
-        textmax = String(i) + ',' + String(i);
-        console.log('Textmax');
-        console.log(textmax);
-        $scope.newComment = textmax;
-        $http.post('/api/comments', {
-          content: $scope.newComment
-        });
+      var intervalPost = setInterval(function() {
+        myTimer();
+      }, 2000);
+      if (i > 180) {
+        clearInterval(intervalPost);
+        intervalPost = 0;
       }
+
     };
   });
