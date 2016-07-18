@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Comment = require('./comment.model');
+var math = require('mathjs');
 
 // Get list of comments
 exports.index = function(req, res) {
@@ -35,6 +36,24 @@ exports.create = function(req, res) {
   console.log("reqBBBBBBBBBBBBBBBBBBBBBBBBBBOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDYYYYYYYYYYY")
   console.log(req.body)
   console.log("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD")
+  var array = req.body.content.split(',');
+  console.log(array);
+  var i = 0;
+  var text = "";
+  for (i = 0; i < 2; i++) {
+    text += array[i] + ",";
+    console.log(math.sin(math.unit(array[i], 'deg')));
+    if (i === 1) {
+      console.log("CCCCCCCCCCCCCCCCCCCCCOOOOOOOOOOOOOOOOSSSSSSSSSSSSSSSS");
+      console.log(math.sin(math.unit(array[i], 'deg')));
+      text += math.cos(math.unit(parseInt(array[i]), 'deg')).toFixed(4);
+      break;
+    }
+    text += math.sin(math.unit(array[i], 'deg')).toFixed(4) + ",";
+  }
+  req.body.content = text;
+  console.log(text);
+  console.log(req.body);
   //console.log(req.user._id)
   var comment = new Comment(_.merge({
     author: "558194cfe4380850581ba76b"
