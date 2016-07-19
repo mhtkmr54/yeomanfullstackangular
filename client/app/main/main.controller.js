@@ -36,7 +36,7 @@ angular.module('angularTubeApp')
     function myTimer() {
       console.log('inmyTimer');
       console.log(i);
-      textmax = parseFloat(i / 10) + ',' + parseFloat(i / 10);
+      textmax = parseFloat(i / 100) + ',' + parseFloat(i / 100);
       console.log('Textmax');
       console.log(textmax);
       $scope.newComment = textmax;
@@ -54,7 +54,7 @@ angular.module('angularTubeApp')
 
       intervalPost = setInterval(function() {
         myTimer();
-      }, 1000);
+      }, 500);
       if (i > 180) {
         clearInterval(intervalPost);
         intervalPost = 0;
