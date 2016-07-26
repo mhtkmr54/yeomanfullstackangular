@@ -31,29 +31,29 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   // don't include the date, if a user specified it
   delete req.body.date;
-  console.log("reqqqqqqqqqqqqqq USERRRRRERRRRRRR");
-  console.log(req.user);
-  console.log("reqBBBBBBBBBBBBBBBBBBBBBBBBBBOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDYYYYYYYYYYY")
-  console.log(req.body)
-  console.log("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD")
+  //console.log("reqqqqqqqqqqqqqq USERRRRRERRRRRRR");
+  //console.log(req.user);
+  //console.log("reqBBBBBBBBBBBBBBBBBBBBBBBBBBOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDYYYYYYYYYYY")
+  //console.log(req.body)
+  //console.log("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD")
   var array = req.body.content.split(',');
-  console.log(array);
+  //console.log(array);
   var i = 0;
   var text = "";
   for (i = 0; i < 2; i++) {
     text += array[i] + ",";
-    console.log(math.sin(parseFloat(array[i])));
+    //console.log(math.sin(parseFloat(array[i])));
     if (i === 1) {
-      console.log("CCCCCCCCCCCCCCCCCCCCCOOOOOOOOOOOOOOOOSSSSSSSSSSSSSSSS");
-      console.log(math.sin(parseFloat(array[i])));
+      //console.log("CCCCCCCCCCCCCCCCCCCCCOOOOOOOOOOOOOOOOSSSSSSSSSSSSSSSS");
+      //console.log(math.sin(parseFloat(array[i])));
       text += math.cos(parseFloat(array[i])).toFixed(4);
       break;
     }
     text += math.sin(parseFloat(array[i])).toFixed(4) + ",";
   }
   req.body.content = text;
-  console.log(text);
-  console.log(req.body);
+  //console.log(text);
+  //console.log(req.body);
   //console.log(req.user._id)
   var comment = new Comment(_.merge({
     author: "558194cfe4380850581ba76b"
@@ -64,6 +64,7 @@ exports.create = function(req, res) {
     }
     return res.json(201, comment);
   });
+  0
 };
 
 // Updates an existing comment in the DB.
